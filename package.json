@@ -1,0 +1,22 @@
+{
+  "name": "bank",
+  "version": "1.0.0",
+  "description": "app about bank",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/H3rrero/Bank-DPIU.git"
+  },
+  "author": "Alejandro y Enol",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/H3rrero/Bank-DPIU/issues"
+  },
+  "homepage": "https://github.com/H3rrero/Bank-DPIU#readme",
+  "dependencies": {
+    "express": "^4.16.2"
+  }
+}
