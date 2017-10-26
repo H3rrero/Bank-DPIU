@@ -8,6 +8,8 @@ var swig = require('swig');
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+var gestorBD = require("./modules/gestorBD.js");
+gestorBD.init(app,mongo);
 
 // Variables
 app.set('port', 8081);
@@ -16,9 +18,9 @@ app.set('clave','abcdefg');
 app.set('crypto',crypto);
 
 //Rutas/controladores por lógica
-require("./routes/usuario.js")(app, swig,mongo);  // (app, param1, param2, etc.)
-require("./routes/cuentaBancaria.js")(app, swig,mongo);  // (app, param1, param2, etc.)
-require("./routes/transacciones.js")(app, swig,mongo);
+require("./routes/usuario.js")(app, swig,gestorBD);  // (app, param1, param2, etc.)
+require("./routes/cuentaBancaria.js")(app, swig,gestorBD);  // (app, param1, param2, etc.)
+require("./routes/transacciones.js")(app, swig,gestorBD);
 
 app.get('/', function (req, res) {
     res.redirect('/login');
