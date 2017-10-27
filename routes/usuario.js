@@ -5,12 +5,8 @@ module.exports = function(app,swig, gestorBD) {
         });
 
         app.get("/login", function(req, res) {
-            var respuesta = swig.renderFile('views/bidentificacion.html', {
-                
-            });
-           
-            res.send(respuesta);
-        
+            var respuesta = swig.renderFile('views/bidentificacion.html', {});
+            res.send(respuesta);    
         });
 
         app.get("/registrarse", function(req, res) {

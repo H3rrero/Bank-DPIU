@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block titulo %} Mis publicaciones {% endblock %} 
+
+{% block contenido_principal %}
+<h2>Mis transacciones</h2>
+
+<!-- Nueva transaccion -->
+<div class="row text-right">
+	<a href="/transacciones/nueva" class="btn btn-info" role="button">Nueva transaccion</a>
+</div>
+
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Concepto</th>
+				<th>Cantidad</th>
+				<th>Destinatario</th>
+				<th class="col-md-1"></th>
+			</tr>
+		</thead>
+		<tbody>
+		{% for transaccion in transacciones %}
+			<tr>
+				<td>{{ transaccion.concepto }}</td>
+				<td>{{ transaccion.cantidad }}</td>
+				<td>{{ transaccion.destinatario }}</td>
+				<td><a href="/transaccion/repetir/{{ transaccion._id.toString() }}"">Repetir</a> <br>
+			    </td>
+			</tr>
+		{% endfor %}
+		</tbody>
+	</table>
+</div>
+
+<!-- Agregar Canción -->
+<div class="row text-right">
+	<a href="/transacciones/nueva" class="btn btn-info" role="button">Nueva transaccion</a>
+</div>
+
+{% endblock %}
