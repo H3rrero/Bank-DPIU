@@ -1,8 +1,14 @@
-{% extends "base.html" %} 
+<!DOCTYPE html>
+<html lang="en">
 
-{% block titulo %} Registrar usuario {% endblock %} 
-
-{% block contenido_principal %}
+<head>
+  <title>Identificación</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
   <h2>Registrar usuario</h2>
   <form class="form-horizontal" method="post" action="/registrarse" >
     <div class="form-group">
@@ -24,7 +30,9 @@
         <button type="submit" class="btn btn-primary">Registrar</button>
       </div>
     </div>
+    <a href="/login">Inicar Sesión</a>
    
-   <script>$("bRegistrarse").addClass("active");</script>
   </form>
-{% endblock %}
+</body>
+
+</html>

@@ -39,5 +39,43 @@ module.exports = {
 				});
 			}
 		});
+	},
+	obtenerCuentas : function(criterio,funcionCallback){
+		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+			if (err) {
+				funcionCallback(null);
+			} else {
+				
+				var collection = db.collection('cuentas');
+				collection.find(criterio).toArray(function(err, cuentas) {
+					console.log(cuentas);
+					console.log(criterio);
+					if (err) {
+						funcionCallback(null);
+					} else {
+						funcionCallback(cuentas);
+					}
+					db.close();
+				});
+			}
+		});
+	},
+	insertarCuenta : function(cuenta, funcionCallback) {
+		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+			if (err) {
+				funcionCallback(null);
+			} else {
+				var collection = db.collection('cuentas');
+				collection.insert(cuenta, function(err, result) {
+					if (err) {
+						funcionCallback(null);
+					} else {
+						console.log(cuenta);
+						funcionCallback(result.ops[0]._id);
+					}
+					db.close();
+				});
+			}
+		});
 	}
 };
