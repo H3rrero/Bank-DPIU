@@ -60,6 +60,40 @@ module.exports = {
 			}
 		});
 	},
+	modificarCuenta : function(criterio, cuenta, funcionCallback) {
+		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+			if (err) {
+				funcionCallback(null);
+			} else {
+				var collection = db.collection('cuentas');
+				collection.update(criterio, {$set: cuenta}, function(err, result) {
+					if (err) {
+						funcionCallback(null);
+					} else {
+						funcionCallback(result);
+					}
+					db.close();
+				});
+			}
+		});
+	},
+	eliminarCuenta : function(criterio, funcionCallback) {
+		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+			if (err) {
+				funcionCallback(null);
+			} else {
+				var collection = db.collection('cuentas');
+				collection.remove(criterio, function(err, result) {
+					if (err) {
+						funcionCallback(null);
+					} else {
+						funcionCallback(result);
+					}
+					db.close();
+				});
+			}
+		});
+	},
 	insertarCuenta : function(cuenta, funcionCallback) {
 		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
 			if (err) {
