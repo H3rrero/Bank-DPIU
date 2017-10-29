@@ -5,6 +5,7 @@ module.exports = {
 		this.mongo = mongo;
 		this.app = app;
 	},
+	
 	obtenerUsuarios : function(criterio,funcionCallback){
 		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
 			if (err) {
@@ -23,6 +24,7 @@ module.exports = {
 			}
 		});
 	},
+	
 	insertarUsuario : function(usuario, funcionCallback) {
 		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
 			if (err) {
@@ -40,6 +42,7 @@ module.exports = {
 			}
 		});
 	},
+	
 	obtenerCuentas : function(criterio,funcionCallback){
 		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
 			if (err) {
@@ -48,8 +51,6 @@ module.exports = {
 				
 				var collection = db.collection('cuentas');
 				collection.find(criterio).toArray(function(err, cuentas) {
-					console.log(cuentas);
-					console.log(criterio);
 					if (err) {
 						funcionCallback(null);
 					} else {
@@ -60,6 +61,7 @@ module.exports = {
 			}
 		});
 	},
+	
 	modificarCuenta : function(criterio, cuenta, funcionCallback) {
 		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
 			if (err) {
@@ -77,6 +79,7 @@ module.exports = {
 			}
 		});
 	},
+	
 	eliminarCuenta : function(criterio, funcionCallback) {
 		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
 			if (err) {
@@ -94,6 +97,7 @@ module.exports = {
 			}
 		});
 	},
+	
 	insertarCuenta : function(cuenta, funcionCallback) {
 		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
 			if (err) {
@@ -111,5 +115,77 @@ module.exports = {
 				});
 			}
 		});
-	}
+	},
+	
+	obtenerTransacciones : function(criterio, pg, funcionCallback){
+		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+			if (err) {
+				funcionCallback(null);
+			} else {		
+				var collection = db.collection('transacciones');
+				collection.find(criterio).count(function(err, count){
+					collection.find(criterio).sort({ fecha: 1 }).skip( (pg-1)*10 ).limit( 10 )
+						.toArray(function(err, transacciones) {		
+						if (err) {
+							funcionCallback(null);
+						} else {
+							funcionCallback(transacciones, count);
+						}
+						db.close();
+					});
+					
+				});
+			}
+		});
+	},
+	
+	insertarTransaccion : function(transaccion, funcionCallback) {
+		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+			if (err) {
+				funcionCallback(null);
+			} else {
+				var collection = db.collection('transacciones');
+				collection.insert(transaccion, function(err, result) {
+					if (err) {
+						funcionCallback(null);
+					} else {
+						funcionCallback(result.ops[0]._id);
+					}
+					db.close();
+				});
+			}
+		});
+	},
+	
+	repetirTransaccion : function(criterio, funcionCallback) {
+		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+			if (err) {
+				funcionCallback(null);
+			} else {
+				
+				var collection = db.collection('transacciones');
+				collection.find(criterio).toArray(function(err, transacciones) {
+					if (err) {
+						funcionCallback(null);
+					} else {
+						var transaccionRep = {
+								cuenta: transacciones[0].cuenta,
+								fecha: Date(),
+								cantidad: transacciones[0].cantidad,
+								concepto: transacciones[0].concepto,
+								destinatario: transacciones[0].destinatario
+						}
+						collection.insert(transaccionRep, function(err, result) {
+							if (err) {
+								funcionCallback(null);
+							} else {
+								funcionCallback(result.ops[0]._id);
+							}
+						});				
+					}
+					db.close();
+				});
+			}
+		});
+	},
 };

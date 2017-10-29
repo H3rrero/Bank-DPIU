@@ -18,21 +18,21 @@ module.exports = function (app, swig, gestorBD) {
 
     app.post('/cuenta/crear', function (req, res) {
         console.log("Titular:");
-        console.log(req.body);
         var cuenta = {
             numero : "ES"+ Math.floor(Math.random() * 1000000000), 
-            titular : "Alejandro",
+            titular : req.body.titular,
             correo : req.session.usuario,
-            tipo : "Plazos",
+            tipo : req.body.tipo,
             fechaCreacion : Date(),
-            trasacciones : [],
-            cantidad : -100
+            cantidad : 100
         };
+        console.log(cuenta);
         gestorBD.insertarCuenta(cuenta, function (id) {
             if (id == null) {
-                res.send("Error al insertar ");
+            	res.redirect("/cuentas?mensaje=No se ha podido crear la cuenta"+
+					"&tipoMensaje=alert-danger "); 
             } else {
-                res.redirect('/cuentas');
+            	res.redirect("/cuentas?mensaje=La cuenta se ha creado satisfactoriamente");    
             }
         });
 
@@ -59,10 +59,10 @@ module.exports = function (app, swig, gestorBD) {
 		
 		gestorBD.eliminarCuenta(criterio,function(cuentas){
 			if ( cuentas == null ){
-				res.send(respuesta);
+				res.redirect("/cuentas?mensaje=No se ha podido borrar la cuenta"+
+					"&tipoMensaje=alert-danger "); 
 			} else {
-				
-				res.redirect('/cuentas');
+				res.redirect("/cuentas?mensaje=La cuenta se ha borrado satisfactoriamente"); 
 			}
 		});
     });
@@ -72,21 +72,19 @@ module.exports = function (app, swig, gestorBD) {
 		var criterio = { "_id" : gestorBD.mongo.ObjectID(id)  };
 		
 		var cuenta = {
-            numero : "ES"+ Math.floor(Math.random() * 1000000000), 
-            titular : "Modificado",
+            titular : req.body.titular,
             correo : req.session.usuario,
-            tipo : "Plazos",
+            tipo : req.body.tipo,
             fechaCreacion : Date(),
-            trasacciones : [],
             cantidad : 100
         };
 
 		gestorBD.modificarCuenta(criterio, cuenta, function(result) {
 			if (result == null) {
-				res.send("Error al modificar ");
+				res.redirect("/cuenta/modificar/" + id + "?mensaje=No se ha podido modificar la cuenta"+
+					"&tipoMensaje=alert-danger "); 
 			} else {
-                res.redirect('/cuentas');
-			
+				res.redirect("/cuenta/modificar/"+ id +"?mensaje=La cuenta se ha modificado satisfactoriamente"); 
 			}
 		});
 	})

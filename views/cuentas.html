@@ -16,7 +16,7 @@
 			<a href="/cuenta/modificar/{{ cuenta._id.toString() }}" class="card-link">modificar</a>
 			<a href="/cuenta/delete/{{ cuenta._id.toString() }}" class="card-link">eliminar</a>
 		</div>
-		<a id="detail" href="/transacciones" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 172px;text-align: center;text-decoration: none;padding: 77px 33px;">&#8250;</a>
+		<a id="detail" href="/transacciones/{{ cuenta.numero }}" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 172px;text-align: center;text-decoration: none;padding: 77px 33px;">&#8250;</a>
 	</div>
 	{% else %}
 	<div  class="card text-white bg-danger mb-3" style="max-width: 20rem; ">
@@ -29,7 +29,7 @@
 			<a href="/cuenta/modificar/{{ cuenta._id.toString() }}" class="card-link">modificar</a>
 			<a href="/cuenta/delete/{{ cuenta._id.toString() }}" class="card-link">eliminar</a>
 		</div>
-		<a id="detail" href="/transacciones" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 172px;text-align: center;text-decoration: none;padding: 77px 33px;">&#8250;</a>
+		<a id="detail" href="/transacciones/{{ cuenta.numero }}" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 172px;text-align: center;text-decoration: none;padding: 77px 33px;">&#8250;</a>
 	</div>
 	{% endif %} {% endfor %}
 </div>
@@ -51,5 +51,8 @@ $( ".card" ).mouseout(function(e) {
 <div class="row text-right">
 	<a href="/cuenta/crear" class="btn btn-info" role="button">Nueva cuenta</a>
 </div>
-
+<script>
+  		$('.navbar li').removeClass('active');
+  		$('#mCuentas').addClass('active');
+</script>
 {% endblock %}
