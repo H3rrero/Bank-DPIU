@@ -124,7 +124,7 @@ module.exports = {
 			} else {		
 				var collection = db.collection('transacciones');
 				collection.find(criterio).count(function(err, count){
-					collection.find(criterio).sort({ fecha: 1 }).skip( (pg-1)*10 ).limit( 10 )
+					collection.find(criterio).sort({ favorita: -1, fecha:1 }).skip( (pg-1)*10 ).limit( 10 )
 						.toArray(function(err, transacciones) {		
 						if (err) {
 							funcionCallback(null);
@@ -156,7 +156,23 @@ module.exports = {
 			}
 		});
 	},
-	
+	modificarTransaccion : function(criterio, trans, funcionCallback) {
+		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
+			if (err) {
+				funcionCallback(null);
+			} else {
+				var collection = db.collection('transacciones');
+				collection.update(criterio, {$set: trans}, function(err, result) {
+					if (err) {
+						funcionCallback(null);
+					} else {
+						funcionCallback(result);
+					}
+					db.close();
+				});
+			}
+		});
+	},
 	repetirTransaccion : function(criterio, funcionCallback) {
 		this.mongo.MongoClient.connect(this.app.get('db'), function(err, db) {
 			if (err) {
@@ -173,13 +189,14 @@ module.exports = {
 								fecha: Date(),
 								cantidad: transacciones[0].cantidad,
 								concepto: transacciones[0].concepto,
-								destinatario: transacciones[0].destinatario
+								destinatario: transacciones[0].destinatario,
+								favorita: transacciones[0].favorita
 						}
 						collection.insert(transaccionRep, function(err, result) {
 							if (err) {
 								funcionCallback(null);
 							} else {
-								funcionCallback(result.ops[0]._id);
+								funcionCallback(result.ops[0]._id,transacciones[0]);
 							}
 						});				
 					}

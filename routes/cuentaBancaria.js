@@ -1,7 +1,7 @@
 module.exports = function (app, swig, gestorBD) {
 
     app.get("/cuentas", function (req, res) {
-        var criterio = {  };
+        var criterio = {correo : req.session.usuario  };
         
                 gestorBD.obtenerCuentas(criterio, function(cuentas) {
                     if (cuentas == null) {
@@ -87,7 +87,7 @@ module.exports = function (app, swig, gestorBD) {
 				res.redirect("/cuenta/modificar/"+ id +"?mensaje=La cuenta se ha modificado satisfactoriamente"); 
 			}
 		});
-	})
+	});
 
     app.get("/cuenta/crear", function (req, res) {
         var respuesta = swig.renderFile('views/crearCuenta.html', {});
