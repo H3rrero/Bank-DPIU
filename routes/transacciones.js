@@ -1,11 +1,17 @@
-module.exports = function (app, swig, gestorBD) {
+module.exports = function (app, swig, gestorBD, util) {
 
     app.get("/transacciones", function (req, res) {
-        var pg = parseInt(req.query.pg); // Es String !!!
+    	var criterio = {};
+		if( req.query.busqueda != null ){
+			criterio = { "concepto" : {$regex : ".*("+req.query.busqueda.toLowerCase()
+				+"|"+util.capitalize(req.query.busqueda)+").*"}  };
+		}
+    	
+    	var pg = parseInt(req.query.pg); // Es String !!!
         if (req.query.pg == null) { // Puede no venir el param
             pg = 1;
         }
-        gestorBD.obtenerTransacciones({}, pg, function (transacciones, total) {
+        gestorBD.obtenerTransacciones(criterio, pg, function (transacciones, total) {
             if (transacciones == null) {
                 res.send("Error al listar ");
             } else {
@@ -64,7 +70,7 @@ module.exports = function (app, swig, gestorBD) {
     })
     function modificarSaldoCuenta(Ncuenta, cantidad) {
         gestorBD.obtenerCuentas({ numero: Ncuenta }, function (cuentas) {
-            if (cuentas == null) {
+            if (cuentas[0] == null) {
 
             } else {
 
@@ -154,8 +160,15 @@ module.exports = function (app, swig, gestorBD) {
 
     })
     app.get("/transacciones/:cuenta", function (req, res) {
-        var criterio = { cuenta: req.params.cuenta };
-        var pg = parseInt(req.query.pg); // Es String !!!
+        var criterio = {};
+		if( req.query.busqueda != null ){
+			criterio = { "concepto" : {$regex : ".*("+req.query.busqueda.toLowerCase()
+				+"|"+util.capitalize(req.query.busqueda)+").*"},
+				cuenta: req.params.cuenta};
+		}
+		else
+	        criterio = { cuenta: req.params.cuenta };
+		var pg = parseInt(req.query.pg); // Es String !!!
         if (req.query.pg == null) { // Puede no venir el param
             pg = 1;
         }
@@ -186,5 +199,52 @@ module.exports = function (app, swig, gestorBD) {
         });
     });
 
+    app.get("/busqueda", function (req, res) {
+    	 var respuesta = swig.renderFile('views/busqueda.html', {
+             cabecera: "Busqueda avanzada"
+         });
+         res.send(respuesta);
+    });
+    
+    app.post("/busqueda", function (req, res) {
+    	var criterio = {
+    			concepto: req.body.concepto? {$regex : ".*("+req.body.concepto.toLowerCase()
+    				+"|"+util.capitalize(req.body.concepto)+").*"}: {$regex : ".*"},
+    			cuenta: req.body.cuenta? {$regex : ".*("+req.body.cuenta.toLowerCase()
+        			+"|"+util.capitalize(req.body.cuenta)+").*"}: {$regex : ".*"},
+        		destinatario: req.body.destinatario? {$regex : ".*("+req.body.destinatario.toLowerCase()
+            		+"|"+util.capitalize(req.body.destinatario)+").*"}: {$regex : ".*"}
+    			
+    	};
+    	console.log(criterio)
+    	var pg = parseInt(req.query.pg); // Es String !!!
+        if (req.query.pg == null) { // Puede no venir el param
+            pg = 1;
+        }
+        gestorBD.obtenerTransacciones(criterio, pg, function (transacciones, total) {
+            if (transacciones == null) {
+                res.send("Error al listar ");
+            } else {
+                var ultimaPg = total / 10;
+                if (total % 10 > 0) { // Sobran decimales
+                    ultimaPg = ultimaPg + 1;
+                }
+
+                var paginas = []; // paginas mostrar
+                for (var i = 0; i <= ultimaPg; i++) {
+                    if (i > 0 && i <= ultimaPg) {
+                        paginas.push(i);
+                    }
+                }
+                var respuesta = swig.renderFile('views/transacciones.html', {
+                    cabecera: "Busqueda avanzada:",
+                    transacciones: transacciones,
+                    paginas: paginas,
+                    actual: pg
+                });
+                res.send(respuesta);
+            }
+        });
+   });
 
 };

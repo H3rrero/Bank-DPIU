@@ -4,8 +4,9 @@
   "description": "app about bank",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+ },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/H3rrero/Bank-DPIU.git"
@@ -21,6 +22,7 @@
     "express": "^4.16.2",
     "express-session": "^1.15.6",
     "mongodb": "^2.2.33",
+    "serve-favicon": "^2.4.5",
     "swig": "^1.4.2"
   }
 }

@@ -1,9 +1,25 @@
 {% extends "base.html" %} {% block titulo %} Mis publicaciones {% endblock %} {% block contenido_principal %}
+
 <h2>{{cabecera}}</h2>
 
 <!-- Nueva transaccion -->
 <div class="row text-right">
 	<a href="/transacciones/crear?cuenta={{cuenta}}" class="btn btn-info" role="button">Nueva transaccion</a>
+	<div>
+	<form method="get" action="/transacciones" id="buscador">
+		<div
+			class="input-group col-xs-3 pull-right">
+				<input type="text" class="search-query form-control"
+					placeholder="Concepto" name="busqueda"/>
+				    <span class="input-group-btn">
+					<button class="btn" type="submit">
+						<span class="glyphicon glyphicon-search"></span>
+					</button>
+				</span>
+		</div>
+	</form>
+	</div>
+	<a href="/busqueda" class="text-right">Busqueda avanzada</a>
 </div>
 
 <div class="table-responsive">
@@ -20,7 +36,11 @@
 		</thead>
 		<tbody>
 			{% for transaccion in transacciones %}
-			<tr>
+			{% if transaccion.favorita == true %}
+			<tr class="success")>
+			{% else %}
+			<tr)>
+			{% endif %}
 				<td>{{ transaccion.fecha}}</td>
 				<td>{{ transaccion.cuenta }}</td>
 				<td>{{ transaccion.concepto }}</td>
