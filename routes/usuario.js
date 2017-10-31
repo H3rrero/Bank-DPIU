@@ -6,6 +6,10 @@ module.exports = function (app, swig, gestorBD) {
         var respuesta = swig.renderFile('views/bidentificacion.html', {});
         res.send(respuesta);
     });
+    app.get("/inicio", function (req, res) {
+        var respuesta = swig.renderFile('views/inicio.html', {});
+        res.send(respuesta);
+    });
 
     app.get("/registrarse", function (req, res) {
 
@@ -53,7 +57,7 @@ module.exports = function (app, swig, gestorBD) {
             } else {
                 req.session.usuario = usuarios[0].email;
                 
-                res.redirect('/cuentas');
+                res.redirect('/inicio');
             }
 
         });
