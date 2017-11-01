@@ -46,6 +46,13 @@ color:white;
 	background-size: 100%;
 	height: 100%;
 }
+.empresaBody{
+	position: center;
+	align-content: left;
+	background: url('/img/empresas.jpg')  no-repeat;
+	background-size: 100%;
+	height: 100%;
+}
 .identificacion{
 	position: center;
 	padding: 11% 27%;
@@ -66,7 +73,7 @@ color:white;
 	cursor:pointer;
 }
 #inicioCont a:hover {
-	color:blue;
+	color:gray;
 	cursor: pointer;
 }
 
@@ -83,7 +90,7 @@ color:white;
 }
 .padd{
 	height: 100%;
-	padding-bottom: 7%;
+	padding-bottom: 10%;
 	padding-left: 3%;
 	padding-right: 3%;
 }
@@ -97,11 +104,90 @@ color:white;
 	background: transparent;
 	
 }
+.navUl li:active{
+	border-color: blue !important;
+	border: 1px solid blue;
+	color: black;
+	background: transparent !important;
+	
+}
+.navUl ul{
+
+}
 .active{
 border-color: blue !important;
 border: 1px solid blue;
 color: black;
 background: transparent !important;
+}
+
+.card-deck-me {
+	flex-flow: row wrap;
+	margin-right: -15px;
+	margin-left: -15px;
+	display: flex;
+	font-size: 1rem;
+}
+
+.card-me{
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex: 1 0 0%;
+	flex: 1 0 0%;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	margin-right: 15px;
+	margin-bottom: 0;
+	margin-left: 15px;
+	margin-bottom: 15px;
+	color: #fff !important;
+	margin-bottom: 1rem !important;
+	background-clip: border-box;
+	border: 1px solid rgba(0,0,0,.125);
+	border-radius: .25rem;
+	min-width: 0;
+	word-wrap: break-word;
+	position: relative;
+}
+.danger{
+	background-color: #dc3545  !important;
+}
+.success{
+	background-color: #28a745 !important;
+}
+
+.card-header-me{
+	border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;
+	padding: .75rem 1.25rem;
+	margin-bottom: 0;
+	background-color: rgba(0,0,0,.03);
+	border-bottom: 1px solid rgba(0,0,0,.125);
+}
+.card-body-me {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}
+.card-title-me{
+	margin-bottom: .75rem;
+	font-size: 1.5rem;
+}
+
+.menuBottom{
+	background: rgba(255, 255, 255,0.8);
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+	width: 100%;
+	height: 50px;
+}
+
+.menuBottom li{
+	margin-left: 50px;
+	margin-top: 5px;
+}
+.menuBottom ul {
+	list-style: none;
 }
 /*PANTALLA COMPLETA
 

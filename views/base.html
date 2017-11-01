@@ -7,13 +7,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/css.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+    crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
 </head>
 
 <body class="baseBody">
 
-    
+
   <!-- Barra de Navegación superior -->
   <nav class="navbar  navUl">
     <div class="container-fluid">
@@ -26,17 +33,61 @@
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav">
-          <li id="mCuentas">
-            <a href="/cuentas">Cuentas</a>
-          </li>
-          </ul>
-          <ul class="nav navbar-nav">
-          <li id="mTransacciones">
-            <a href="/transacciones">Transacciones</a>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-credit-card-alt" aria-hidden="true"></i>
+              Cuentas
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li id="mTransacciones">
+                <a href="/transacciones">Transacciones</a>
+              </li>
+              <li id="mCuentas">
+                <a href="/cuentas">Ver tus cuentas</a>
+              </li>
+              <li id="mCuentas">
+                <a href="/blanc">Domiciliación</a>
+              </li>
+            </ul>
           </li>
         </ul>
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class="glyphicon glyphicon-euro"></span> Inversión
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/blanc">Plan de pensiones</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/blanc">
+              <span class="glyphicon glyphicon-piggy-bank"></span> Ahorro</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/blanc">
+              <i class="fa fa-home" aria-hidden="true"></i>
+              Hipotecas y Préstamos</a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/blanc">
+              <i class="fa fa-smile-o" aria-hidden="true"></i>
+              Seguros</a>
+          </li>
+        </ul>
+     
         <ul class="nav navbar-nav navbar-right">
-          
+
           <li id="bDesconectarse">
             <a href="/desconectarse">
               <span class="glyphicon glyphicon-log-out"></span> Exit</a>
@@ -48,35 +99,50 @@
 
 
   <div class="padd">
-      <div class="fondoBase">
-	<script>
-		var mensaje = getUrlParameter('mensaje');
-		var tipoMensaje = getUrlParameter('tipoMensaje');
-		
-		if ( mensaje != ""){
-			if (tipoMensaje == "" ){
-				tipoMensaje = 'alert-info';
-			}
-			$( ".container" )
-				.append("<div class='alert alert-dismissable "+tipoMensaje+"'>"+
-				"<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>"+
-				mensaje+" </div>");
-		}
-		
-		function getUrlParameter(name) {
-		    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-		    var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-		    var results = regex.exec(location.search);
-		    return results === null ? '' : 
-		    	decodeURIComponent(results[1].replace(/\+/g, ' '));
-		};
-	</script>
-	
-    <!-- Contenido -->
-    {% block contenido_principal %}
-    <!-- Posible contenido por defecto -->
-    {% endblock %}
+    <div class="fondoBase">
+      <script>
+        var mensaje = getUrlParameter('mensaje');
+        var tipoMensaje = getUrlParameter('tipoMensaje');
+
+        if (mensaje != "") {
+          if (tipoMensaje == "") {
+            tipoMensaje = 'alert-info';
+          }
+          $(".container")
+            .append("<div class='alert alert-dismissable " + tipoMensaje + "'>" +
+            "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>" +
+            mensaje + " </div>");
+        }
+
+        function getUrlParameter(name) {
+          name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+          var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+          var results = regex.exec(location.search);
+          return results === null ? '' :
+            decodeURIComponent(results[1].replace(/\+/g, ' '));
+        };
+      </script>
+
+      <!-- Contenido -->
+      {% block contenido_principal %}
+      <!-- Posible contenido por defecto -->
+      {% endblock %}
+    </div>
   </div>
-</div>
+  <div class="menuBottom">
+    <ul>
+      <li>
+        <a href="/blanc">
+          <i class="fa fa-building" aria-hidden="true"></i>
+          Oficinas y Cajeros</a>
+      </li>
+      <li>
+        <a href="/blanc">
+          <i class="fa fa-phone" aria-hidden="true"></i>
+          666-666-666</a>
+      </li>
+    </ul>
+  </div>
 </body>
+
 </html>

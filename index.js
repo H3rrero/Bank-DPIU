@@ -35,13 +35,14 @@ routerUsuarioSession.use(function(req, res, next) {
 });
 //Aplicar routerUsuarioSession
 app.use("/transacciones",routerUsuarioSession);
+app.use("/empresas",routerUsuarioSession);
 app.use("/cuentas",routerUsuarioSession);
 app.use("/busqueda",routerUsuarioSession);
 
 // Variables
 app.set('port', process.env.PORT || 8081);
-//app.set('db','mongodb://admin:admin@ds237475.mlab.com:37475/bank');
-app.set('db','mongodb://localhost:27017/uomusic');
+app.set('db','mongodb://admin:admin@ds237475.mlab.com:37475/bank');
+//app.set('db','mongodb://localhost:27017/uomusic');
 app.set('clave','abcdefg');
 app.set('crypto',crypto);
 

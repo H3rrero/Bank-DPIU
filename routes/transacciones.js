@@ -44,6 +44,20 @@ module.exports = function (app, swig, gestorBD, util) {
         res.send(respuesta);
     });
 
+    app.get("/empresas", function (req, res) {
+        var respuesta = swig.renderFile('views/empresas.html', {
+           
+        });
+        res.send(respuesta);
+    });
+
+    app.get("/blanc", function (req, res) {
+        var respuesta = swig.renderFile('views/pagBlanca.html', {
+           
+        });
+        res.send(respuesta);
+    });
+
     app.post('/transacciones/crear', function (req, res) {
         var transaccion = {
             cuenta: req.body.cuenta,

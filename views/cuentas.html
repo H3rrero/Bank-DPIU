@@ -1,33 +1,33 @@
-{% extends "base.html" %} {% block titulo %} Mis publicaciones {% endblock %} {% block contenido_principal %}
-<h2>Mis cuentas</h2>
+{% extends "base.html" %} {% block titulo %} Mis cuentas {% endblock %} {% block contenido_principal %}
+
 
 
 <!-- http://librosweb.es/libro/bootstrap_3/capitulo_2/tipos_de_rejillas.html -->
 <!-- Inicio del Bloque canción  -->
-<div class="card-deck">
+<div class="card-deck-me">
 	{% for cuenta in cuentas %} {% if cuenta.cantidad>=0 %}
-	<div  class="card text-white bg-success mb-3" style="max-width: 20rem;">
-		<div class="card-header">Cuentas max joven</div>
-		<div class="card-body">
-			<h4 class="card-title">Titular: {{cuenta.titular}}</h4>
-			<p class="card-text">IBAN {{cuenta.numero}}</p>
-			<p class="card-text">Tipo: {{cuenta.tipo}}</p>
-			<p class="card-text">Saldo: {{cuenta.cantidad}}</p>
-			<a href="/cuenta/modificar/{{ cuenta._id.toString() }}" class="card-link">modificar</a>
-			<a href="/cuenta/delete/{{ cuenta._id.toString() }}" class="card-link">eliminar</a>
+	<div  class="card-me success" style="max-width: 20rem;">
+		<div class="card-header-me">Cuentas max joven</div>
+		<div class="card-body-me">
+			<h4 class="card-title-me">Titular: {{cuenta.titular}}</h4>
+			<p >IBAN {{cuenta.numero}}</p>
+			<p >Tipo: {{cuenta.tipo}}</p>
+			<p >Saldo: {{cuenta.cantidad}}</p>
+			<a id="amodificar" style="visibility: hidden;" href="/cuenta/modificar/{{ cuenta._id.toString() }}" ><span class=" 	glyphicon glyphicon-wrench"></span></a>
+			<a id="aeliminar" style="visibility: hidden;margin-left: 20px;" href="/cuenta/delete/{{ cuenta._id.toString() }}" ><span class="glyphicon glyphicon-trash"></span></a>
 		</div>
 		<a id="detail" href="/transacciones/{{ cuenta.numero }}" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 100%;text-align: center;text-decoration: none;padding: 77px 33px;">&#8250;</a>
 	</div>
 	{% else %}
-	<div  class="card text-white bg-danger mb-3" style="max-width: 20rem; ">
-		<div class="card-header">Cuentas max joven</div>
-		<div class="card-body">
-			<h4 class="card-title">Titular: {{cuenta.titular}}</h4>
-			<p class="card-text">IBAN {{cuenta.numero}}</p>
-			<p class="card-text">Tipo: {{cuenta.tipo}}</p>
-			<p class="card-text">Saldo: {{cuenta.cantidad}}</p>
-			<a href="/cuenta/modificar/{{ cuenta._id.toString() }}" class="card-link">modificar</a>
-			<a href="/cuenta/delete/{{ cuenta._id.toString() }}" class="card-link">eliminar</a>
+	<div  class="card-me danger" style="max-width: 20rem; ">
+		<div class="card-header-me">Cuentas max joven</div>
+		<div class="card-body-me">
+			<h4 class="card-title-me">Titular: {{cuenta.titular}}</h4>
+			<p >IBAN {{cuenta.numero}}</p>
+			<p >Tipo: {{cuenta.tipo}}</p>
+			<p >Saldo: {{cuenta.cantidad}}</p>
+			<a id="amodificar" style="visibility: hidden;" href="/cuenta/modificar/{{ cuenta._id.toString() }}" ><span class=" 	glyphicon glyphicon-wrench"></span></a>
+			<a id="aeliminar" style="visibility: hidden;margin-left: 20px;" href="/cuenta/delete/{{ cuenta._id.toString() }}" ><span class="glyphicon glyphicon-trash"></span></a>
 		</div>
 		<a id="detail" href="/transacciones/{{ cuenta.numero }}" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 100%;text-align: center;text-decoration: none;padding: 77px 33px;">&#8250;</a>
 	</div>
@@ -35,20 +35,24 @@
 </div>
 <!-- Fin del Bloque canción  -->
 <script>
-$( ".card" ).mouseover(function(e) {
+$( ".card-me" ).mouseover(function(e) {
 	console.log($(this).children()[2]);
 	$(this).children("#detail").css("visibility","visible");
+	$(this).children(".card-body-me").children("#amodificar").css("visibility","visible");
+	$(this).children(".card-body-me").children("#aeliminar").css("visibility","visible");
 });
-$( ".card" ).mouseout(function(e) {
+$( ".card-me" ).mouseout(function(e) {
 	console.log(e);
 	$(this).children("#detail").css("visibility","hidden");
+	$(this).children(".card-body-me").children("#amodificar").css("visibility","hidden");
+	$(this).children(".card-body-me").children("#aeliminar").css("visibility","hidden");
 });
 
 </script>
 
 
 <!-- Agregar Canción -->
-<div class="row text-right">
+<div class="row text-left">
 	<a href="/cuenta/crear" class="btn btn-info" role="button">Nueva cuenta</a>
 </div>
 <script>
