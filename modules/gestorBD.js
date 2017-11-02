@@ -186,10 +186,11 @@ module.exports = {
 					} else {
 						var transaccionRep = {
 								cuenta: transacciones[0].cuenta,
-								fecha: Date(),
+								fecha: new  Date().getDate()+"/"+(parseInt(new Date().getMonth())+1)+"/"+ new Date().getFullYear(),
 								cantidad: transacciones[0].cantidad,
 								concepto: transacciones[0].concepto,
 								destinatario: transacciones[0].destinatario,
+								correo : req.session.usuario,
 								favorita: transacciones[0].favorita
 						}
 						collection.insert(transaccionRep, function(err, result) {

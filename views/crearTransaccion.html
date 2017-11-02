@@ -1,10 +1,10 @@
 
 {% extends "base.html" %} 
 
-{% block titulo %} Nueva transacción {% endblock %} 
+{% block titulo %} Nueva transacciï¿½n {% endblock %} 
 
 {% block contenido_principal %}
-  <h2>Nueva transacción</h2>
+  <h2>Nueva transacciï¿½n</h2>
   <form class="form-horizontal" method="post" action="/transacciones/crear">
     <div class="form-group">
       <label class="control-label col-sm-2" for="cuenta">Cuenta:</label>
@@ -21,7 +21,7 @@
       </div>
     </div>
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="cantidad">Cantidad:</label>
+      <label class="control-label col-sm-2" for="cantidad">Cantidad (â‚¬):</label>
       <div class="col-sm-10">
         <input type="number" class="form-control" name="cantidad"
             placeholder="cantidad" required="true"/>

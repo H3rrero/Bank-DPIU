@@ -3,8 +3,8 @@
 
 <!-- Nueva transaccion -->
 <div class="row text-right" id="nuevaCuenta">
-	<h1 class="pull-left">Transacciones:<h1>
-	<a href="/transacciones/crear?cuenta={{cuenta}}" class="btn btn-info" role="button">Nueva transaccion</a>
+	<h1 class="pull-left">Transacciones de {{user}}:<h1>
+	<a href="/transacciones/crear?cuenta={{cuenta}}" class="btn btn-info" role="button"><span class="glyphicon glyphicon-plus"></span> Nueva transaccion</a>
 	</div>
 <div class="row text-right search">
 	<div>
@@ -48,7 +48,7 @@
 				<td>{{ transaccion.fecha}}</td>
 				<td>{{ transaccion.cuenta }}</td>
 				<td>{{ transaccion.concepto }}</td>
-				<td>{{ transaccion.cantidad }}</td>
+				<td>{{ transaccion.cantidad }}€</td>
 				<td>{{ transaccion.destinatario }}</td>
 				<td>
 					<a href="/transacciones/repetir?id={{transaccion._id.toString()}}&cuenta={{transaccion.cuenta}}"><span class="glyphicon glyphicon-refresh"></span> Repetir</a>

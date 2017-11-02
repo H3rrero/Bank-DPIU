@@ -1,7 +1,7 @@
 module.exports = function (app, swig, gestorBD, util) {
 
     app.get("/transacciones", function (req, res) {
-    	var criterio = {};
+    	var criterio = { correo : req.session.usuario};
 		if( req.query.busqueda != null ){
 			criterio = { "concepto" : {$regex : ".*("+req.query.busqueda.toLowerCase()
 				+"|"+util.capitalize(req.query.busqueda)+").*"}  };
@@ -30,6 +30,7 @@ module.exports = function (app, swig, gestorBD, util) {
                     cabecera: "Todas las transacciones:",
                     transacciones: transacciones,
                     paginas: paginas,
+                    user: req.session.usuario+ "  (" + total + ")",
                     actual: pg
                 });
                 res.send(respuesta);
@@ -61,14 +62,15 @@ module.exports = function (app, swig, gestorBD, util) {
     app.post('/transacciones/crear', function (req, res) {
         var transaccion = {
             cuenta: req.body.cuenta,
-            fecha: Date(),
+            fecha: new  Date().getDate()+"/"+(parseInt(new Date().getMonth())+1)+"/"+ new Date().getFullYear(),
             cantidad: req.body.cantidad,
             concepto: req.body.concepto,
             destinatario: req.body.destinatario,
+            correo : req.session.usuario,
             favorita: false
         }
         gestorBD.insertarTransaccion(transaccion, function (id) {
-            var criterio = { cuenta: transaccion.cuenta };
+            var criterio = { cuenta: transaccion.cuenta,correo : req.session.usuario };
             gestorBD.obtenerTransacciones(criterio, 1, function (transacciones, total) {
                 if (transacciones == null) {
                     res.redirect("/transacciones/" + req.body.cuenta + "?mensaje=La transacción no se ha podido efectuar" +
@@ -206,6 +208,7 @@ module.exports = function (app, swig, gestorBD, util) {
                     transacciones: transacciones,
                     cuenta: req.params.cuenta,
                     paginas: paginas,
+                    user:req.params.cuenta + "  (" + total + ")",
                     actual: pg
                 });
                 res.send(respuesta);

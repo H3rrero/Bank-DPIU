@@ -5,48 +5,51 @@
 <!-- http://librosweb.es/libro/bootstrap_3/capitulo_2/tipos_de_rejillas.html -->
 <!-- Inicio del Bloque canción  -->
 <div class="card-deck-me">
-	{% for cuenta in cuentas %} 
-		{% if cuenta.cantidad>=0 %}
-			<div  class="card-me success" style="max-width: 20rem;">
+	{% for cuenta in cuentas %} {% if cuenta.cantidad>=0 %}
+	<div class="card-me success" style="max-width: 20rem;">
 		{% else %}
-			<div  class="card-me danger" style="max-width: 20rem; ">
-		{% endif %}
+		<div class="card-me danger" style="max-width: 20rem; ">
+			{% endif %}
 			<div class="card-header-me">Cuentas max joven</div>
 			<div class="card-body-me">
 				<h4 class="card-title-me">Titular: {{cuenta.titular}}</h4>
-				<p >IBAN {{cuenta.numero}}</p>
-				<p >Tipo: {{cuenta.tipo}}</p>
-				<p >Saldo: {{cuenta.cantidad}}</p>
-				<a id="amodificar" class="btn btn-info" style="visibility: hidden;" href="/cuenta/modificar/{{ cuenta._id.toString() }}" ><span class="glyphicon glyphicon-wrench"></span> Modificar</a>
-				<a id="aeliminar" class="btn btn-danger" style="visibility: hidden;" href="/cuenta/delete/{{ cuenta._id.toString() }}" ><span class="glyphicon glyphicon-trash"></span> Borrar</a>
+				<p><strong>IBAN {{cuenta.numero}}</strong></p>
+				<p>Tipo: {{cuenta.tipo}}</p>
+				<p>Saldo: {{cuenta.cantidad}}€</p>
+				<a id="amodificar" class="btn btn-info" style="visibility: hidden;" href="/cuenta/modificar/{{ cuenta._id.toString() }}">
+					<span class="glyphicon glyphicon-wrench"></span> Modificar</a>
+				<a id="aeliminar" class="btn btn-danger" style="visibility: hidden;" href="/cuenta/delete/{{ cuenta._id.toString() }}">
+					<span class="glyphicon glyphicon-trash"></span> Borrar</a>
 			</div>
-			<a id="detail" href="/transacciones/{{ cuenta.numero }}" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 100%;text-align: center;text-decoration: none;padding: 77px 33px;">&#8250;</a>
+			<a id="detail" title="Transacciones de la cuenta" href="/transacciones/{{ cuenta.numero }}" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 100%;text-align: center;text-decoration: none;padding: 77px 33px;">
+				<i class="fa fa-exchange" aria-hidden="true"></i>
+			</a>
 		</div>
-	{% endfor %}
-</div>
-<!-- Fin del Bloque canción  -->
-<script>
-$( ".card-me" ).mouseover(function(e) {
-	console.log($(this).children()[2]);
-	$(this).children("#detail").css("visibility","visible");
-	$(this).children(".card-body-me").children("#amodificar").css("visibility","visible");
-	$(this).children(".card-body-me").children("#aeliminar").css("visibility","visible");
-});
-$( ".card-me" ).mouseout(function(e) {
-	console.log(e);
-	$(this).children("#detail").css("visibility","hidden");
-	$(this).children(".card-body-me").children("#amodificar").css("visibility","hidden");
-	$(this).children(".card-body-me").children("#aeliminar").css("visibility","hidden");
-});
+		{% endfor %}
+	</div>
+	<!-- Fin del Bloque canción  -->
+	<script>
+		$(".card-me").mouseover(function (e) {
+			console.log($(this).children()[2]);
+			$(this).children("#detail").css("visibility", "visible");
+			$(this).children(".card-body-me").children("#amodificar").css("visibility", "visible");
+			$(this).children(".card-body-me").children("#aeliminar").css("visibility", "visible");
+		});
+		$(".card-me").mouseout(function (e) {
+			console.log(e);
+			$(this).children("#detail").css("visibility", "hidden");
+			$(this).children(".card-body-me").children("#amodificar").css("visibility", "hidden");
+			$(this).children(".card-body-me").children("#aeliminar").css("visibility", "hidden");
+		});
 
-</script>
+	</script>
 
 
-<div class="row text-left addButton">
-	<a href="/cuenta/crear" class="btn btn-info" role="button"><span class="glyphicon glyphicon-plus"></span> Nueva cuenta</a>
-</div>
-<script>
-  		$('.navbar li').removeClass('active');
-  		$('#mCuentas').addClass('active');
-</script>
-{% endblock %}
+	<div class="row text-left addButton">
+		<a href="/cuenta/crear" class="btn btn-info" role="button">
+			<span class="glyphicon glyphicon-plus"></span> Nueva cuenta</a>
+	</div>
+	<script>
+		$('.navbar li').removeClass('active');
+		$('#mCuentas').addClass('active');
+	</script> {% endblock %}
