@@ -15,8 +15,8 @@ module.exports = function (app, swig, gestorBD, util) {
             if (transacciones == null) {
                 res.send("Error al listar ");
             } else {
-                var ultimaPg = total / 10;
-                if (total % 10 > 0) { // Sobran decimales
+                var ultimaPg = total / 8;
+                if (total % 8 > 0) { // Sobran decimales
                     ultimaPg = ultimaPg + 1;
                 }
 

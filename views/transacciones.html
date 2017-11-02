@@ -2,8 +2,11 @@
 
 
 <!-- Nueva transaccion -->
-<div class="row text-right">
+<div class="row text-right" id="nuevaCuenta">
+	<h1 class="pull-left">Transacciones:<h1>
 	<a href="/transacciones/crear?cuenta={{cuenta}}" class="btn btn-info" role="button">Nueva transaccion</a>
+	</div>
+<div class="row text-right search">
 	<div>
 	<form method="get" action="/transacciones" id="buscador">
 		<div
@@ -18,11 +21,13 @@
 		</div>
 	</form>
 	</div>
+</div>
+<div class="row text-right" id="search">
 	<a href="/busqueda" class="text-right">Busqueda avanzada</a>
 </div>
 
-<div class="table-responsive">
-	<table class="table table-hover table-striped">
+<div class="table-responsive ">
+	<table class="table table-hover table-striped transaccion">
 		<thead>
 			<tr>
 				<th>Fecha</th>
@@ -46,13 +51,13 @@
 				<td>{{ transaccion.cantidad }}</td>
 				<td>{{ transaccion.destinatario }}</td>
 				<td>
-					<a href="/transacciones/repetir?id={{transaccion._id.toString()}}&cuenta={{transaccion.cuenta}}">Repetir</a>
+					<a href="/transacciones/repetir?id={{transaccion._id.toString()}}&cuenta={{transaccion.cuenta}}"><span class="glyphicon glyphicon-refresh"></span> Repetir</a>
 					<br>
 					<td>
 						{% if transaccion.favorita == true %}
-						<a href="/transacciones/favorita/{{ transaccion._id.toString() }}">Eliminar de favoritos</a>
+						<a href="/transacciones/favorita/{{ transaccion._id.toString() }}"><span class="glyphicon glyphicon-star"></span> Eliminar de favoritos</a>
 						{% else %}
-						<a href="/transacciones/favorita/{{ transaccion._id.toString() }}">Añadir a favoritos</a>
+						<a href="/transacciones/favorita/{{ transaccion._id.toString() }}"><span class="glyphicon glyphicon-star-empty"></span> Añadir a favoritos</a>
 						{% endif %}
 
 						<br>
@@ -67,10 +72,6 @@
 	</table>
 </div>
 
-<!-- Agregar Canción -->
-<div class="row text-right">
-	<a href="/transacciones/crear?cuenta={{cuenta}}" class="btn btn-info" role="button">Nueva transaccion</a>
-</div>
 <!-- Paginaci�n mostrar la actual y 2 anteriores y dos siguientes -->
 <div class="row text-center">
 	<ul class="pagination">

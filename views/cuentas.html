@@ -5,33 +5,24 @@
 <!-- http://librosweb.es/libro/bootstrap_3/capitulo_2/tipos_de_rejillas.html -->
 <!-- Inicio del Bloque canción  -->
 <div class="card-deck-me">
-	{% for cuenta in cuentas %} {% if cuenta.cantidad>=0 %}
-	<div  class="card-me success" style="max-width: 20rem;">
-		<div class="card-header-me">Cuentas max joven</div>
-		<div class="card-body-me">
-			<h4 class="card-title-me">Titular: {{cuenta.titular}}</h4>
-			<p >IBAN {{cuenta.numero}}</p>
-			<p >Tipo: {{cuenta.tipo}}</p>
-			<p >Saldo: {{cuenta.cantidad}}</p>
-			<a id="amodificar" style="visibility: hidden;" href="/cuenta/modificar/{{ cuenta._id.toString() }}" ><span class=" 	glyphicon glyphicon-wrench"></span></a>
-			<a id="aeliminar" style="visibility: hidden;margin-left: 20px;" href="/cuenta/delete/{{ cuenta._id.toString() }}" ><span class="glyphicon glyphicon-trash"></span></a>
+	{% for cuenta in cuentas %} 
+		{% if cuenta.cantidad>=0 %}
+			<div  class="card-me success" style="max-width: 20rem;">
+		{% else %}
+			<div  class="card-me danger" style="max-width: 20rem; ">
+		{% endif %}
+			<div class="card-header-me">Cuentas max joven</div>
+			<div class="card-body-me">
+				<h4 class="card-title-me">Titular: {{cuenta.titular}}</h4>
+				<p >IBAN {{cuenta.numero}}</p>
+				<p >Tipo: {{cuenta.tipo}}</p>
+				<p >Saldo: {{cuenta.cantidad}}</p>
+				<a id="amodificar" class="btn btn-info" style="visibility: hidden;" href="/cuenta/modificar/{{ cuenta._id.toString() }}" ><span class="glyphicon glyphicon-wrench"></span> Modificar</a>
+				<a id="aeliminar" class="btn btn-danger" style="visibility: hidden;" href="/cuenta/delete/{{ cuenta._id.toString() }}" ><span class="glyphicon glyphicon-trash"></span> Borrar</a>
+			</div>
+			<a id="detail" href="/transacciones/{{ cuenta.numero }}" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 100%;text-align: center;text-decoration: none;padding: 77px 33px;">&#8250;</a>
 		</div>
-		<a id="detail" href="/transacciones/{{ cuenta.numero }}" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 100%;text-align: center;text-decoration: none;padding: 77px 33px;">&#8250;</a>
-	</div>
-	{% else %}
-	<div  class="card-me danger" style="max-width: 20rem; ">
-		<div class="card-header-me">Cuentas max joven</div>
-		<div class="card-body-me">
-			<h4 class="card-title-me">Titular: {{cuenta.titular}}</h4>
-			<p >IBAN {{cuenta.numero}}</p>
-			<p >Tipo: {{cuenta.tipo}}</p>
-			<p >Saldo: {{cuenta.cantidad}}</p>
-			<a id="amodificar" style="visibility: hidden;" href="/cuenta/modificar/{{ cuenta._id.toString() }}" ><span class=" 	glyphicon glyphicon-wrench"></span></a>
-			<a id="aeliminar" style="visibility: hidden;margin-left: 20px;" href="/cuenta/delete/{{ cuenta._id.toString() }}" ><span class="glyphicon glyphicon-trash"></span></a>
-		</div>
-		<a id="detail" href="/transacciones/{{ cuenta.numero }}" style="visibility: hidden; background: rgba(255, 255, 255,0.5);width: 42px;right: 0px !important;position: absolute;height: 100%;text-align: center;text-decoration: none;padding: 77px 33px;">&#8250;</a>
-	</div>
-	{% endif %} {% endfor %}
+	{% endfor %}
 </div>
 <!-- Fin del Bloque canción  -->
 <script>
@@ -51,9 +42,8 @@ $( ".card-me" ).mouseout(function(e) {
 </script>
 
 
-<!-- Agregar Canción -->
-<div class="row text-left">
-	<a href="/cuenta/crear" class="btn btn-info" role="button">Nueva cuenta</a>
+<div class="row text-left addButton">
+	<a href="/cuenta/crear" class="btn btn-info" role="button"><span class="glyphicon glyphicon-plus"></span> Nueva cuenta</a>
 </div>
 <script>
   		$('.navbar li').removeClass('active');

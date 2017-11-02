@@ -124,7 +124,7 @@ module.exports = {
 			} else {		
 				var collection = db.collection('transacciones');
 				collection.find(criterio).count(function(err, count){
-					collection.find(criterio).sort({ favorita: -1, fecha:1 }).skip( (pg-1)*10 ).limit( 10 )
+					collection.find(criterio).sort({ favorita: -1, fecha:1 }).skip( (pg-1)*8 ).limit( 8 )
 						.toArray(function(err, transacciones) {		
 						if (err) {
 							funcionCallback(null);
