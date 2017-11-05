@@ -59,6 +59,26 @@ module.exports = function (app, swig, gestorBD, util) {
         res.send(respuesta);
     });
 
+    app.get("/form", function (req, res) {
+        var respuesta = swig.renderFile('views/form.html', {
+           
+        });
+        res.send(respuesta);
+    });
+
+    app.get("/about", function (req, res) {
+        var respuesta = swig.renderFile('views/sobreNosotros.html', {
+           
+        });
+        res.send(respuesta);
+    });
+
+    app.get("/aboutEm", function (req, res) {
+        var respuesta = swig.renderFile('views/sobreNosotrosEm.html', {
+           
+        });
+        res.send(respuesta);
+    });
     app.post('/transacciones/crear', function (req, res) {
         var transaccion = {
             cuenta: req.body.cuenta,

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%; overflow:hidden;">
+
+<head>
+    <title> Bank</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css.css" />
+    <link rel="stylesheet" href="/css/font-awesome.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+        crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/countrySelect.css">
+    <script src="/js/countrySelect.min.js"></script>
+    <link rel="stylesheet" href="/css/intlTelInput.css">
+    <script src="/js/intlTelInput.js"></script>
+</head>
+
+<body class="empresaBody">
+
+
+    <!-- Barra de Navegación superior -->
+    <nav class="navbar  navUl">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-user-secret" aria-hidden="true"></i>
+                            Banca privada</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                            Financiación</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-car" aria-hidden="true"></i>
+                            Renting</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-line-chart" aria-hidden="true"></i>
+                            </i>
+                            Acciones</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">
+                            <i class="fa fa-users" aria-hidden="true"></i>
+                            Consejo directivo</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav">
+                        <li>
+                            <a href="/form">
+                                    <i class="fa fa-users" aria-hidden="true"></i>                                
+                                Inversores</a>
+                        </li>
+                    </ul>
+                   
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li id="bDesconectarse">
+                        <a href="/desconectarse">
+                            <span class="glyphicon glyphicon-log-out"></span> Exit</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                        
+                                  <li id="babout">
+                                    <a href="/aboutEm">
+                                      <i class="fa fa-question" aria-hidden="true"></i>
+                                      Quienes somos</a>
+                                  </li>
+                                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="padd">
+        <div class="fondoBase">
+            <div class="container">
+                <div class="row form-group">
+                    <div class="col-xs-12">
+                        <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+                            <li class="active">
+                                <a href="#step-1">
+                                    <h4 class="list-group-item-heading">Paso 1</h4>
+                                    <p class="list-group-item-text">Datos personales</p>
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#step-2">
+                                    <h4 class="list-group-item-heading">Paso 2</h4>
+                                    <p class="list-group-item-text">Datos profesionales</p>
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#step-3">
+                                    <h4 class="list-group-item-heading">Paso 3</h4>
+                                    <p class="list-group-item-text">Cuestionario sobre la empresa</p>
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#step-4">
+                                    <h4 class="list-group-item-heading">Paso 4</h4>
+                                    <p class="list-group-item-text">Datos de capital</p>
+                                </a>
+                            </li>
+                            <li class="disabled">
+                                <a href="#step-5">
+                                    <h4 class="list-group-item-heading">Paso 5</h4>
+                                    <p class="list-group-item-text"></p>Contacto por teléfono</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <form class="container">
+
+                <div class="row setup-content" id="step-1">
+                    <div class="col-xs-12">
+                        <div class="col-md-12 well text-center">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="trato">Trato</label>
+                                    <select id="trato" class="form-control">
+                                        <option selected>Señor</option>
+                                        <option>Señora</option>
+                                    </select>
+                                </div>
+                                <div id="dnombre" class="form-group col-md-2">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" required>
+                                </div>
+                                <div id="dapellidos" class="form-group col-md-4">
+                                    <label for="apellidos">Apellidos</label>
+                                    <input type="text" class="form-control" id="apellidos" required>
+
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="pais">País</label>
+                                    <input type="text" id="country">
+                                    <input type="hidden" id="country_code" />
+                                </div>
+                            </div>
+                            <script>
+                                $("#country").countrySelect();
+                            </script>
+                            <button id="activate-step-2" class="btn btn-primary btn-md">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            <form class="container">
+
+                <div class="row setup-content" id="step-2">
+                    <div class="col-xs-12">
+                        <div class="col-md-12 well text-center">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="tipo">Tipo de cliente</label>
+                                    <select id="tipo" class="form-control">
+                                        <option selected>Empresa</option>
+                                        <option>Particular</option>
+                                    </select>
+                                </div>
+                                <div id="dnombreemp" class="form-group col-md-2">
+                                    <label for="nombreemp">Nombre de la empresa</label>
+                                    <input type="text" class="form-control" id="nombreemp" required>
+                                </div>
+                                <div id="dpuesto" class="form-group col-md-4">
+                                    <label for="puesto">Puesto en la empresa</label>
+                                    <input type="text" class="form-control" id="puesto" required>
+                                </div>
+                                <div class="form-group col-md-2">
+                                    <label for="pais">País de la empresa</label>
+                                    <input type="text" id="countryEmp">
+                                    <input type="hidden" id="country_code" />
+                                </div>
+                            </div>
+                            <script>
+                                $("#countryEmp").countrySelect();
+                            </script>
+                            <button id="activate-step-3" class="btn btn-primary btn-md">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            <form class="container">
+
+                <div class="row setup-content" id="step-3">
+                    <div class="col-xs-12">
+                        <div class="col-md-12 well text-center">
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="diversificado">Esta el negocio de la empresa diversificado en más de un país</label>
+                                    <select id="diversificado" class="form-control">
+                                        <option selected>Sí</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="invers">Dispone de inversión en otras empresas</label>
+                                    <select id="invers" class="form-control">
+                                        <option selected>Sí</option>
+                                        <option>No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="sector">Sector al que pertenece la empresa </label>
+                                    <select id="sector" class="form-control" style="margin-top:20px ;">
+                                        <option selected>Inversiones</option>
+                                        <option>Banca Privada</option>
+                                        <option>Otros</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button id="activate-step-4" class="btn btn-primary btn-md">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+            <form class="container">
+
+                <div class="row setup-content" id="step-4">
+                    <div class="col-xs-12">
+                        <div class="col-md-12 well text-center">
+
+                            <div class="form-row">
+
+                                <div id="dcapitalmax" class="form-group col-md-3">
+                                    <label for="capitalmax">Capital mínimo disponible</label>
+                                    <input type="number" min="0" class="form-control" id="capitalmax" required>
+                                </div>
+                                <div  id="dcapitalmin" class="form-group col-md-3">
+                                    <label for="capitalmin">Capital máximo disponible</label>
+                                    <input type="number" min="0" class="form-control" id="capitalmin" required>
+                                </div>
+
+                                <div class="form-group col-md-4">
+                                    <label for="disponi">Disponibilidad para realizar inversión
+                                    </label>
+                                    <select id="disponi" class="form-control">
+                                        <option selected>Inmediato</option>
+                                        <option>Más de un mes</option>
+                                        <option>Más de seis meses</option>
+                                        <option>Más de un año</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button id="activate-step-5" class="btn btn-primary btn-md">
+                                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+            <form class="container">
+                    <div class="row setup-content" id="step-5">
+                            <div class="col-xs-12">
+                                <div class="col-md-12 well text-center">
+        
+                                    
+
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <label for="llamada">Concertar llamada
+                                    </label>
+                                    <select id="llamada" class="form-control">
+                                        <option>Sí</option>
+                                        <option selected>No</option>
+                                    </select>
+                                </div>
+                                <div id="dtelef" class="form-group col-md-2">
+                                    <label for="telef">Concretar llamada</label>
+                                    <input type="tel" placeholder="666-666-666" class="form-control" name="telef" id="telef" disabled>
+                                </div>
+                                <div id="dtime" class="form-group col-md-4">
+                                    <label for="time">Fecha y hora de preferencia para la llamada</label>
+                                    <input type="datetime-local" class="form-control" name="time" id="time" disabled>
+                                </div>
+                            </div>
+                            <script>
+                                $("#telef").intlTelInput();</script>
+                                <a id="activate-step-6" class="btn btn-primary btn-md">
+                                        <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                                </a>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+    <div class="menuBottom">
+        <ul>
+            <li>
+                <a href="#">
+                    <i class="fa fa-building" aria-hidden="true"></i>
+                    Oficinas y Cajeros</a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa fa-phone" aria-hidden="true"></i>
+                    666-666-666</a>
+            </li>
+        </ul>
+    </div>
+</body>
+<script>
+                                $("#llamada").change(function () {
+
+                                    if ($("#llamada").val() == "Sí") {
+                                        $("#telef").prop('disabled', false);
+                                        $("#time").prop('disabled', false);
+                                    }
+                                    else {
+                                        $("#telef").prop('disabled', true);
+                                        $("#time").prop('disabled', true);
+                                    }
+                                });
+
+                                // Activate Next Step
+
+                                $(document).ready(function () {
+
+
+                                    var navListItems = $('ul.setup-panel li a'),
+                                        allWells = $('.setup-content');
+
+                                    allWells.hide();
+
+                                    navListItems.click(function (e) {
+                                        e.preventDefault();
+                                        var $target = $($(this).attr('href')),
+                                            $item = $(this).closest('li');
+
+                                        if (!$item.hasClass('disabled')) {
+                                            navListItems.closest('li').removeClass('active');
+                                            $item.addClass('active');
+                                            allWells.hide();
+                                            $target.show();
+                                        }
+                                    });
+
+
+                                    $('ul.setup-panel li.active a').trigger('click');
+
+                                    // DEMO ONLY //
+                                    $('#activate-step-2').on('click', function (e) {
+                                        
+                                        if ($("#nombre").val().length==0) {
+                                            $("#dnombre").removeClass("has-success").addClass("has-error");
+                                        } else {
+                                            $("#dnombre").removeClass("has-error").addClass("has-success");
+                                        }
+                                        if ($("#apellidos").val().length==0) {
+                                            $("#dapellidos").removeClass("has-success").addClass("has-error");
+                                        } else {
+                                            $("#dapellidos").removeClass("has-error").addClass("has-success");
+                                        }
+                                        if ($("#apellidos").val().length>0 && $("#nombre").val().length>0 ) {
+                                            $('ul.setup-panel li:eq(1)').removeClass('disabled');
+                                            $('ul.setup-panel li a[href="#step-2"]').trigger('click');
+                                            $(this).remove();
+                                        }
+                                    })
+
+                                    $('#activate-step-3').on('click', function (e) {
+                                        if ($("#nombreemp").val().length==0) {
+                                            $("#dnombreemp").removeClass("has-success").addClass("has-error");
+                                        } else {
+                                            $("#dnombreemp").removeClass("has-error").addClass("has-success");
+                                        }
+                                        if ($("#puesto").val().length==0) {
+                                            $("#dpuesto").removeClass("has-success").addClass("has-error");
+                                        } else {
+                                            $("#dpuesto").removeClass("has-error").addClass("has-success");
+                                        }
+                                        if ($("#nombreemp").val().length>0 && $("#puesto").val().length>0 ) {
+                                            $('ul.setup-panel li:eq(2)').removeClass('disabled');
+                                            $('ul.setup-panel li a[href="#step-3"]').trigger('click');
+                                            $(this).remove();
+                                        }
+                                        
+                                    })
+
+                                    $('#activate-step-4').on('click', function (e) {
+                                        $('ul.setup-panel li:eq(3)').removeClass('disabled');
+                                        $('ul.setup-panel li a[href="#step-4"]').trigger('click');
+                                        $(this).remove();
+                                    })
+
+                                    $('#activate-step-5').on('click', function (e) {
+                                        if ($("#capitalmax").val().length==0) {
+                                            $("#dcapitalmax").removeClass("has-success").addClass("has-error");
+                                        } else {
+                                            $("#dcapitalmax").removeClass("has-error").addClass("has-success");
+                                        }
+                                        if ($("#capitalmin").val().length==0) {
+                                            $("#dcapitalmin").removeClass("has-success").addClass("has-error");
+                                        } else {
+                                            $("#dcapitalmin").removeClass("has-error").addClass("has-success");
+                                        }
+                                        if ($("#capitalmin").val().length>0 && $("#capitalmax").val().length>0 ) {
+                                            $('ul.setup-panel li:eq(4)').removeClass('disabled');
+                                            $('ul.setup-panel li a[href="#step-5"]').trigger('click');
+                                            $(this).remove();
+                                        }
+                                    
+                                    })
+                               
+
+                                    $('#activate-step-6').on('click', function (e) {
+                                        console.log("Hola");
+                                        if ($("#telef").val().length==0 && $("#llamada").val() == "Sí") {
+                                            $("#dtelef").removeClass("has-success").addClass("has-error");
+                                        } else {
+                                            $("#dtelef").removeClass("has-error").addClass("has-success");
+                                        }
+                                        if ($("#time").val().length==0 && $("#llamada").val() == "Sí") {
+                                            $("#dtime").removeClass("has-success").addClass("has-error");
+                                        } else {
+                                            $("#dtime").removeClass("has-error").addClass("has-success");
+                                        }
+                                        if (($("#telef").val().length>0 && $("#time").val().length>0) || $("#llamada").val() == "No" ) {
+                                            alert("Su formulario ha sido enviado correctamente");
+                                            location.reload();
+                                        }
+                                        
+                                    })
+                                });
+
+
+
+
+</script>
+
+</html>
