@@ -157,7 +157,7 @@ module.exports = function (app, swig, gestorBD, util) {
 
                         modificarSaldoCuenta(trans["cuenta"], trans["cantidad"]);
                         modificarSaldoCuentaDestino(trans["destinatario"], trans["cantidad"]);
-                        res.redirect("/transacciones/" + req.query.cuenta + "?mensaje=Transaccion repetida correctamente");
+                        res.redirect('back');
                     }
                 });
             }
@@ -187,7 +187,7 @@ module.exports = function (app, swig, gestorBD, util) {
                     if (result == null) {
                         res.redirect("/transacciones/" + cuenta + "?mensaje="+mensaje);
                     } else {
-                        res.redirect("/transacciones/" + cuenta + "?mensaje="+mensaje);
+                        res.redirect('back');
                     }
                 });
             }

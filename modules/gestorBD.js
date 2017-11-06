@@ -190,7 +190,7 @@ module.exports = {
 								cantidad: transacciones[0].cantidad,
 								concepto: transacciones[0].concepto,
 								destinatario: transacciones[0].destinatario,
-								correo : req.session.usuario,
+								correo : transacciones[0].correo,
 								favorita: transacciones[0].favorita
 						}
 						collection.insert(transaccionRep, function(err, result) {
